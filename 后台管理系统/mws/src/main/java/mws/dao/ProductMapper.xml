@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mws.dao.ProductMapper">
+     <!--SQL片段 -->
+     <sql id="getProductListWhere">
+          <where>
+               <if test="id != null">
+                     p.id like "%"#{id}"%"
+               </if>
+               <if test="name != null and name !=''">
+                     and p.name = #{name}
+               </if>
+               <if test="category != null">
+                     <if test="category.name != null and  category.name != ''">
+                          and c.name= #{category.name}
+                     </if>
+               </if>
+          </where>
+     </sql>
+     <select id="getProductList" parameterType="Product"
+          resultMap="ProductWithCategoryResult">
+          select p.id,
+          p.name,
+          price,
+          categoryId,
+          pnum,
+          imgurl,
+          description,shelfLife,c.id as category_id,c.name as  category_name
+          from product p inner join category c
+          on p.categoryid=c.id
+          <include refid="getProductListWhere" />
+          <!-- 执行分页查询
+          <if test="start !=null and rows != null">
+               limit #{start},#{rows}
+          </if>
+           -->
+     </select>
+     
+     <select id="allProduct" parameterType="Product"
+          resultMap="ProductWithCategoryResult">
+          select p.id,
+          p.name,
+          price,
+          categoryId,
+          pnum,
+          imgurl,
+          description,shelfLife,c.id as category_id,c.name as  category_name
+          from product p inner join category c
+          on p.categoryid=c.id
+     </select>
+     
+     
+     <select id="getProductById" parameterType="int"
+          resultMap="ProductWithCategoryResult">
+          select p.id,
+          p.name,
+          price,
+          categoryId,
+          pnum,
+          imgurl,
+          description,shelfLife,c.id as category_id,c.name as  category_name
+          from product p inner join category c
+          on p.categoryid=c.id
+          where p.id=#{id}
+     </select>
+     
+     <select id="getProductByName" parameterType="String"
+          resultMap="ProductWithCategoryResult">
+          select p.id,
+          p.name,
+          price,
+          categoryId,
+          pnum,
+          imgurl,
+          description,shelfLife,c.id as category_id,c.name as  category_name
+          from product p inner join category c
+          on p.categoryid=c.id
+          where p.name like concat('%',#{name},'%')
+     </select>
+     
+     <select id="getProductByCategoryId" parameterType="int"
+          resultMap="ProductWithCategoryResult">
+          select p.id,
+          p.name,
+          price,
+          categoryId,
+          pnum,
+          imgurl,
+          description,shelfLife,c.id as category_id,c.name as  category_name
+          from product p inner join category c
+          on p.categoryid=c.id
+          where p.categoryId=#{categoryId}
+     </select>
+     
+     
+     <!-- 添加产品 -->
+     <insert id="insertProduct" parameterType="Product">
+		insert into product (name, price, categoryId, pnum, imgurl,
+		description,shelfLife )
+		values ( #{name}, #{price}, #{categoryId}, #{pnum}, #{imgurl},
+		#{description},#{shelfLife} )
+	</insert>
+	
+	<!-- 修改产品 -->
+     <update id="updateProduct" parameterType="Product">
+          update product
+          set name=#{name},price=#{price},categoryId=#{categoryId},pnum=#{pnum},imgurl=#{imgurl},
+          description=#{description},shelfLife=#{shelfLife}
+          where id=#{id}
+     </update>
+     
+     <!-- 删除产品 -->
+     <delete id="deleteProductById" parameterType="int">
+          delete from product where id=#{id}
+     </delete>
+     
+     <!-- 此处定义了一个查询结果映射类型，用于完成Product与Category的1对1关系映射 -->
+     <resultMap type="Product"  id="ProductWithCategoryResult">
+          <id property="id" column="id" />
+          <result property="name" column="name" />
+          <result property="price" column="price" />
+          <result property="categoryId" column="categoryId" />
+          <result property="pnum" column="pnum" />
+          <result property="imgurl" column="imgurl" />
+          <result property="description" column="description"  />
+          <result property="shelfLife" column="shelfLife"  />
+          <association property="category"  javaType="Category">
+         	   <id property="id" column="category_id"  />
+               <result property="name" column="category_name"  />
+          </association>
+     </resultMap>
+</mapper>

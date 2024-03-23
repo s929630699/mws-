@@ -1,0 +1,39 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "table.jsp"
+  },
+  "logoInfo": {
+    "title": "麦维思烘培坊",
+    "image": "img/mwslogo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "常规管理",
+      "icon": "fa fa-address-book",
+      "href": "table.jsp",
+      "target": "_self",
+      "child": [
+        {
+          "title": "商品管理",
+          "href": "productTable.jsp",
+          "icon": "fa fa-gift",
+          "target": "_self"
+        },
+        {
+          "title": "订单管理",
+          "href": "orderTable.jsp",
+          "icon": "fa fa-sticky-note",
+          "target": "_self"
+        },
+        {
+          "title": "用户管理",
+          "href": "userTable.jsp",
+          "icon": "fa fa-users",
+          "target": "_self"
+        }
+      ]
+    }
+  ]
+}

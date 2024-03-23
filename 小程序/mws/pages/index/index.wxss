@@ -1,0 +1,88 @@
+.index_swiper swiper {
+  width: 750rpx;
+  height: 340rpx;
+  box-sizing: border-box;
+  border-radius: 8rpx;
+  box-shadow: 0 4px 10px 0 rgba(83, 83, 83, 0.288);
+}
+.index_swiper swiper image {
+  width: 97.5%;
+  position: absolute;
+  margin: 0 1.25%;
+  height: 402rpx;
+  border-radius: 8rpx;
+  display: inline-block;
+  box-shadow: 0 4px 10px 0 rgba(83, 83, 83, 0.288);
+}
+.userinfo {
+  color: #aaa;
+  width: 100%;
+  height: 190rpx;
+  
+}
+.hasNoUserinfo{
+  text-align: center;
+  margin:0 auto;
+  width: 80%;
+  height: auto;
+  padding: 25px 0px;
+  overflow-wrap: break-word;
+}
+
+.userinfo-avatar {
+  float: left;
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 30rpx 30rpx;
+  border-radius: 50%; 
+  box-shadow: 0 4px 10px 0 rgba(83, 83, 83, 0.288);
+}
+
+.userinfo-avatar image{
+  width: 100%;
+  height: 100%;
+}
+
+.userinfo-nickname{
+  float: left;
+  margin-top: 70rpx;
+}
+.index_cate{
+  width: 97.5%;
+  margin-left: 1.25%;
+  display: flex;
+  background-color: rgb(216, 216, 216);
+  overflow: hidden;
+  border-radius: 5%;
+  box-shadow: 0 4px 10px 0 rgba(83, 83, 83, 0.288);
+}
+.index_cate navigator{
+  padding: 20rpx;
+  flex: 1;
+}
+.index_cate navigator image{
+  width: 100%;
+}
+.index_cate navigator text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.activities{
+}
+.activitiesImg{
+  height: 450rpx;
+  width: 100% ;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 20rpx;
+  margin-top: 20px;
+}
+.activitiesImg image{
+  width: 97.5%;
+  margin: 0 10rpx;
+  height: 450rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 4px 10px 0 rgba(83, 83, 83, 0.288);
+}

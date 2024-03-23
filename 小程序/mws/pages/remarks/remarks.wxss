@@ -1,0 +1,53 @@
+.double{
+    width:100%;
+    font-weight: bold;
+    font-size: 13pt;
+    padding:20rpx 0;
+}
+
+.break{
+  width: 100%;
+  height: 30rpx;
+}
+.header{
+    padding: 5rpx 20rpx;
+}
+.body{
+    padding: 5rpx 20rpx;
+}
+.fastremarks{
+    margin-top: 20rpx;
+}
+
+.hotandother{
+    padding: 5rpx;
+}
+
+.hotandother button{
+    margin-right: 20rpx;
+}
+
+.otherremarks{
+    width: 95%;
+    height: 150px;
+    border: solid;
+    border-radius:10px;
+    border-width: 1px;
+    
+    margin-top: 20rpx;
+}
+
+.otherremarks textarea{
+    width: 95%;
+    padding: 5px 10px;
+}
+
+.placeholder{
+    font-size: 9pt;
+    color: gray;
+}
+
+.button{
+    margin: 90rpx 5rpx
+}
+

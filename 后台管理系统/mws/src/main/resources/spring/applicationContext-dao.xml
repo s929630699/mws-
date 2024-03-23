@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 配置 读取properties文件 jdbc.properties -->
+	 <context:property-placeholder location="classpath:jdbc.properties,classpath:resource/jwt.properties" />
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		destroy-method="close">
+		<!-- 数据库驱动 -->
+		<property name="driverClass" value="${jdbc.driver}" />
+		<!-- 相应驱动的jdbcUrl -->
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<!-- 数据库的用户名 -->
+		<property name="username" value="${jdbc.username}" />
+		<!-- 数据库的密码 -->
+		<property name="password" value="${jdbc.password}" />
+		<!-- 检查数据库连接池中空闲连接的间隔时间，单位是分，默认值：240，如果要取消则设置为0 -->
+		<property name="idleConnectionTestPeriod" value="60" />
+		<!-- 连接池中未使用的链接最大存活时间，单位是分，默认值：60，如果要永远存活设置为0 -->
+		<property name="idleMaxAge" value="30" />
+		<!-- 每个分区最大的连接数 -->
+		<property name="maxConnectionsPerPartition" value="150" />
+		<!-- 每个分区最小的连接数 -->
+		<property name="minConnectionsPerPartition" value="5" />
+	</bean>
+	<!-- 配置MyBatis的核心类SqlSessionFactory -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 配置数据源 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 加载MyBatis配置文件 -->
+		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml" />
+		<!-- 添加分页插件 -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageInterceptor">
+					<property name="properties">
+						<!-- 什么都不配，使用默认的配置 -->
+						<value>
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
+	<!-- 配置Mapper扫描，MyBatis基于Mapper接口方式 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- Mapper扫描包 -->
+		<property name="basePackage" value="mws.dao" />
+	</bean>
+
+	<!-- 定义事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+</beans>

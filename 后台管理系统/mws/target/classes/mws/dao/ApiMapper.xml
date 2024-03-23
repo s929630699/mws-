@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mws.dao.ApiMapper">
+	<select id="getBannerList" parameterType="Banner"
+resultMap="BannerResult">
+          select * from banner
+     </select>
+     
+     <select id="getCatesitemList" parameterType="Catesitem"
+resultMap="CatesitemResult">
+          select * from catesitem
+     </select>
+     
+     <select id="getCategoryList" parameterType="Category"
+resultMap="CategoryResult">
+          select * from category
+     </select>
+     
+     <select id="getProductList" parameterType="Product"
+resultMap="ProductResult">
+          select * from product
+     </select>
+     
+     <select id="getActivitiesList" parameterType="Activities"
+resultMap="ActivitiesResult">
+			select * from activities
+	</select>
+	
+	<select id="getUserAddrList" parameterType="UserAddr"
+resultMap="UserAddrResult">
+			select a.id,userId,receiver,mobile,address,defaultState,
+				u.id as user_id,username,gender,telephone
+				from user_addr a inner join user u
+				on a.userId=#{userId}
+	</select>
+	
+	<update id="addrDefAll0" parameterType="int">
+		update user_addr set defaultState=0 where userId=#{userId}
+	</update>
+	
+	<update id="updateAddrDef" parameterType="int">
+		update user_addr set defaultState=1 where id=#{id}
+	</update>
+	
+	<delete id="deleteAddr" parameterType="int">
+		delete from user_addr where id=#{id}
+	</delete>
+	
+	<insert id="insertAddr" parameterType="UserAddr">
+		insert into user_addr 
+		(userId,receiver,mobile,address,defaultState) 
+		values 
+		(#{userId},#{receiver},#{mobile},#{address},#{defaultState})
+	</insert>
+	
+	<update id="updateAddr" parameterType="UserAddr">
+		update user_addr
+		set receiver=#{receiver},mobile=#{mobile},address=#{address}
+		where id=#{id}
+	</update>
+	
+	<insert id="insertOrder" parameterType="Order">
+		insert into `order`
+		(id,money,receiverAddress,receiverName,receiverPhone,paystate,ordertime,user_id,orderState,remarks)
+		values
+		(#{id},#{money},#{receiverAddress},#{receiverName},#{receiverPhone},#{paystate},#{ordertime},
+		#{user_id},#{orderState},#{remarks})
+	</insert>
+	
+	<insert id="insertOrderitem" parameterType="OrderItem">
+		insert into `orderitem`
+		(orderId,productId,productName,buyNum,buyPrice)
+		values
+		(#{orderId},#{productId},#{productName},#{buyNum},#{buyPrice})
+	</insert>
+	
+	<select id="selectOrderByUserId" parameterType="int" resultMap="OrderResult">
+		select * from `order` where user_id=#{user_id}
+	</select>
+	
+	<select id="selectOrderByPaystate" parameterType="Order" resultMap="OrderResult">
+		select * from `order` where user_id=#{user_id} and paystate=#{paystate}
+	</select>
+	
+	<select id="selectOrderByOrderState" parameterType="Order" resultMap="OrderResult">
+	    select * from `order` where user_id=#{user_id} and orderState=#{orderState}
+	</select>
+	
+	<select id="selectOrderItemByOrderId" parameterType="String" resultMap="OrderItemResult">
+		select * from `orderitem` where orderId=#{orderId}
+	</select>
+	
+	<update id="orderPay" parameterType="String"> 
+		update `order` set
+		paystate="2"
+		where id=#{id}
+	</update>
+	
+	<update id="orderCancel" parameterType="String"> 
+		update `order` set
+		paystate="0",orderState="4"
+		where id=#{id}
+	</update>
+	
+	<update id="orderFinish" parameterType="String"> 
+		update `order` set
+		orderState="3"
+		where id=#{id}
+	</update>
+	
+	<delete id="orderRemove" parameterType="String">
+		delete from `order` where id=#{id}
+	</delete>
+	
+	
+     
+<!-- 此处定义了一个查询结果映射类型 -->
+     <resultMap type="Banner"  id="BannerResult">
+          <id property="id" column="id" />
+          <result property="imgsrc" column="imgsrc" />
+     </resultMap>
+     
+     <resultMap type="Catesitem"  id="CatesitemResult">
+          <id property="id" column="id" />
+          <result property="name" column="name" />
+          <result property="imgsrc" column="imgsrc" />
+     </resultMap>
+     
+     <resultMap type="Category"  id="CategoryResult">
+          <id property="id" column="id" />
+          <result property="name" column="name" />
+     </resultMap>
+     
+     <resultMap type="Product"  id="ProductResult">
+          <id property="id" column="id" />
+          <result property="name" column="name" />
+          <result property="price" column="price" />
+          <result property="categoryId" column="categoryId" />
+          <result property="pnum" column="pnum" />
+          <result property="imgurl" column="imgurl" />
+          <result property="description" column="description"  />
+          <result property="shelfLife" column="shelfLife"  />
+     </resultMap>
+     
+     <resultMap type="Activities"  id="ActivitiesResult">
+          <id property="id" column="id" />
+          <result property="name" column="name" />
+          <result property="imgurl" column="imgurl" />
+          <result property="beginDate" column="beginDate" />
+          <result property="deadLine" column="deadLine" />
+          <result property="introduce" column="introduce" />
+     </resultMap>
+     
+     <resultMap type="UserAddr"  id="UserAddrResult">
+          <id property="id" column="id" />
+          <result property="userId" column="userId" />
+          <result property="address" column="address" />
+          <result property="receiver" column="receiver" />
+          <result property="mobile" column="mobile" />
+          <result property="defaultState" column="defaultState" />
+          <association property="user"  javaType="User">
+         	   <id property="id" column="user_id"  />
+               <result property="username" column="username"  />
+               <result property="gender" column="gender"  />
+               <result property="telephone" column="telephone"  />
+          </association>
+     </resultMap>
+     
+     <resultMap type="Order"  id="OrderResult">
+          <id property="id" column="id" />
+          <result property="money" column="money" />
+          <result property="receiverAddress" column="receiverAddress" />
+          <result property="receiverName" column="receiverName" />
+          <result property="receiverPhone" column="receiverPhone" />
+          <result property="paystate" column="paystate" />
+          <result property="ordertime" column="ordertime" />
+          <result property="user_id" column="user_id" />
+          <result property="orderState" column="orderState" />
+          <result property="remarks" column="remarks" />
+     </resultMap>
+     
+     <resultMap type="OrderItem"  id="OrderItemResult">
+          <id property="id" column="id" />
+          <result property="orderId" column="orderId" />
+          <result property="productId" column="productId" />
+          <result property="productName" column="productName" />
+          <result property="buyNum" column="buyNum" />
+          <result property="buyPrice" column="buyPrice" />
+          <association property="product"  javaType="Product">
+         	   <id property="id" column="pid"  />
+               <result property="imgurl" column="imgurl"  />
+          </association>
+     </resultMap>
+</mapper>

@@ -1,0 +1,52 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/goods/goods",
+        "pages/order/order",
+        "pages/user/user",
+        "pages/auth/auth",
+        "pages/logs/logs",
+        "pages/binding-phone/binding-phone",
+        "pages/receiverAddress/receiverAddress",
+        "pages/editAddress/editAddress",
+        "pages/remarks/remarks",
+        "pages/chooseAddress/chooseAddress",
+        "pages/orderList/orderList"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#feb70f",
+        "navigationBarTitleText": "麦维思烘培",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true
+    },
+    "tabBar": {
+        "color": "#999",
+        "selectedColor": "#ff2d4a",
+        "backgroundColor": "#fafafa",
+        "position": "bottom",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "icons/home.png",
+                "selectedIconPath": "icons/home-o.png"
+            },
+            {
+                "pagePath": "pages/goods/goods",
+                "text": "好食购",
+                "iconPath": "icons/shopping.png",
+                "selectedIconPath": "icons/shopping-o.png"
+            },
+            {
+                "pagePath": "pages/user/user",
+                "text": "我的",
+                "iconPath": "icons/my.png",
+                "selectedIconPath": "icons/my-o.png"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}

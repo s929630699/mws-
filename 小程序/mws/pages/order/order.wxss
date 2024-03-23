@@ -1,0 +1,209 @@
+page {
+    background-color: rgb(243, 243, 243)
+}
+
+.header {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13pt;
+    margin: 20rpx 20rpx;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 3%;
+    box-shadow: 0 4px 10px 0 rgba(83, 83, 83, 0.288);
+}
+
+.body {
+    margin: 20rpx 20rpx;
+    background-color: white;
+    border-radius: 3%;
+    box-shadow: 0 4px 10px 0 rgba(83, 83, 83, 0.288);
+}
+
+.paddtop {
+    padding-top: 15rpx;
+}
+
+.break {
+    width: 100%;
+    height: 30rpx;
+}
+
+.tablepeop {
+    margin: 30rpx auto 5rpx 20rpx;
+    padding-bottom: 15rpx;
+    text-align: left;
+    color: darkorange;
+    font-size: 11pt;
+    width: 100%;
+}
+
+.time {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    text-align: right;
+    font-size: 11pt;
+    color: gray;
+    font-weight: normal;
+}
+
+.line {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    clear: both;
+    width: 95%;
+    height: 1px;
+    border-bottom: 1px solid #000;
+}
+
+.item {
+    display: -webkit-flex;
+    color: #333;
+    font-size: 36rpx;
+    line-height: 50rpx;
+    padding: 5rpx 40rpx;
+}
+
+.item .name {
+    -webkit-flex: 1;
+    text-align: left;
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+
+.item .num {
+    width: 120rpx;
+    text-align: center;
+    margin: 0 5rpx;
+    color: lightslategray;
+    font-size: 11pt;
+}
+
+.item .total {
+    width: 50rpx;
+    text-align: right;
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+.moneytopay {
+    width: 90%;
+    margin: 5rpx 5rpx;
+    text-align: right;
+    font-weight: bold;
+    font-size: 13pt;
+    padding-bottom: 10rpx;
+}
+
+.preremarks {
+
+    width: 100%;
+}
+
+.preremarks .remarks {
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    font-size: 13pt;
+    color: forestgreen;
+    border: 0px;
+}
+
+.prefer {
+    text-align: right;
+    font-size: 11pt;
+    color: dimgray;
+    text-indent: 30rpx;
+}
+
+.reminder {
+    width: 80%;
+    color: gray;
+    margin: 10rpx 50rpx;
+    font-size: 11pt;
+    padding-bottom: 15rpx;
+}
+
+.discount {
+    font-size: 13pt;
+    color: red;
+    margin: 5rpx 5rpx;
+    font-weight: bold;
+}
+
+.footer {
+    display: -webkit-flex;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100rpx;
+    background: #efefef;
+}
+
+/*.footer .cashtopay{
+    margin: 0rpx auto 0rpx 0rpx;
+    width: 40%;
+}*/
+
+/*.footer .topay{
+    margin: 0rpx 0rpx 0rpx auto;
+    width: 50%;
+}*/
+
+.topay {
+    margin: 50rpx auto;
+    width: 100%;
+}
+
+.modalImage{
+    width: 75vw;
+    height: 70vw;
+}
+
+.address {
+    background-color: white;
+    margin: 20rpx 20rpx;
+    padding:15rpx 0;
+    border-radius: 3%;
+    box-shadow: 0 4px 10px 0 rgba(83, 83, 83, 0.288);
+}
+
+.contact-box {
+    display: flex;
+    width: 90%;
+    height: auto;
+    flex-direction: column;
+    padding-left: 50rpx;
+    margin-right: 20rpx;
+}
+
+.contact-box>view:first-child {
+    flex: 1;
+}
+
+.contact-box .detail {
+    font-size: 20px;
+}
+
+.contact .val {
+    color: #333;
+}
+
+.contact .name-box {
+    margin-top: 10rpx;
+}
+
+.contact .mobile-box {
+    margin-top: 10rpx;
+}
+
+.add-new-address {
+
+    text-align: center;
+    line-height: 200rpx;
+    color: gainsboro;
+}

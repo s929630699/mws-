@@ -1,0 +1,67 @@
+<!--order.wxml-->
+
+<image src="../../icons/break.png" class="break"></image>
+
+<view class='address' bindtap='editAddress'>
+    <block wx:if="{{addressInfo}}">
+        <view class="contact-box">
+            <view>
+                <view class="detail">{{addressInfo.address}}</view>
+                <view class="contact">
+                    <view class="name-box">
+                        <text class="val">{{addressInfo.receiver}}</text>
+                    </view>
+                    <view class="mobile-box">
+                        <text class="val">{{addressInfo.mobile}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="add-new-address">
+
+            <text>+添加地址</text>
+        </view>
+    </block>
+</view>
+
+<view class="header">
+    <view class="paddtop">麦维思烘培</view>
+    <view class="tablepeop">
+        <text class="time">{{time}}</text>
+    </view>
+</view>
+
+<view class="body">
+    <view class="paddtop">
+        <view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+            <view class="name ellipsis">{{cart.pname[id]}}</view>
+            <view class="num">x{{cart.list[id]}}</view>
+            <view class="total">￥{{cart.price[id]*cart.list[id]}}</view>
+        </view>
+    </view>
+    <view class="line"></view>
+    <view class="moneytopay">小计￥{{cart.total}}</view>
+
+</view>
+<view class="body">
+    <view class="preremarks">
+        <button plain="true" class="remarks" bindtap="Tapremarks">
+            订单备注
+            <text class="prefer">(口味、偏好)</text>
+        </button>
+    </view>
+    <view class="line"></view>
+    <view class="reminder">
+        <icon type="info"></icon>如果上帝已确认订单信息无误，请点击如下【确认提交订单】按钮，静候本店送货上门。请保持电话畅通哦~。<text class="discount"></text>
+    </view>
+</view>
+
+<button size='default' type='primary' class='topay' bindtap="Tapcashtopay"> 确认提交订单</button>
+
+<modal title="支付" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
+    <view>
+        <image class="modalImage" src="../../icons/pay.jpg" mode="aspectFill"></image>
+    </view>
+</modal>

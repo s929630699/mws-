@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mws.dao.OrderMapper">
+<!--SQL片段 -->
+     <sql id="getOrderListWhere">
+          <where>
+               <if test="id != null">
+                     id like "%"#{id}"%"
+               </if>
+               <if test="user_id != null and user_id !=''">
+                     and user_id = #{user_id}
+               </if>
+          </where>
+     </sql>
+     
+     <select id="getOrderList" parameterType="Order"
+     resultMap="OrdertResult">
+          select * from `order`
+          <include refid="getOrderListWhere" />
+          <!-- 执行分页查询
+          <if test="start !=null and rows != null">
+               limit #{start},#{rows}
+          </if>
+           -->
+     </select>
+     
+     <select id="getOrderById" parameterType="String" resultMap="OrdertResult">
+     	select * from `order` where id=#{id}
+     </select>
+     
+     <select id="getOrderByUserId" parameterType="int" resultMap="OrdertResult">
+     	select * from `order` where user_id=#{userId}
+     </select>
+     
+     
+     
+     <select id="getOrderItemById" parameterType="String" resultMap="OrderItemResult">
+     	select * from `orderitem` where orderId=#{orderId}
+     </select>
+     
+     <!-- 修改产品 -->
+     <update id="updateOrder" parameterType="Order">
+     	update `order` 
+     	set 
+     	receiverAddress=#{receiverAddress},receiverName=#{receiverName},receiverPhone=#{receiverPhone},
+     	paystate=#{paystate},orderState=#{orderState}
+     	where id=#{id}
+     </update>
+     
+     <!-- 删除产品 -->
+     <delete id="deleteOrder" parameterType="String" >
+          delete from `order` where id=#{id}
+     </delete>
+     
+     
+     <!-- 此处定义了一个查询结果映射类型，用于完成Product与Category的1对1关系映射 -->
+     <resultMap type="Order"  id="OrdertResult">
+          <id property="id" column="id" />
+          <result property="money" column="money" />
+          <result property="receiverAddress" column="receiverAddress" />
+          <result property="receiverName" column="receiverName" />
+          <result property="receiverPhone" column="receiverPhone" />
+          <result property="paystate" column="paystate" />
+          <result property="ordertime" column="ordertime"  />
+          <result property="user_id" column="user_id"  />
+          <result property="orderState" column="orderState"  />
+          <result property="remarks" column="remarks"	/>
+     </resultMap>
+     
+     <resultMap type="OrderItem"  id="OrderItemResult">
+          <id property="id" column="id" />
+          <result property="orderId" column="orderId" />
+          <result property="productId" column="productId" />
+          <result property="productName" column="productName" />
+          <result property="buyNum" column="buyNum" />
+          <result property="buyPrice" column="buyPrice" />
+     </resultMap>
+
+</mapper>

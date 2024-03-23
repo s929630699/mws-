@@ -1,0 +1,23 @@
+<image src="../../icons/break.png" class="break"></image>
+<view class="header">
+    <text class = "double">快速备注</text>
+    <view class="fastremarks">
+        <view class="hotandother">
+            <button size="mini" type="primary"  plain="{{iceCode}}"bindtap="iceCode">饮料要冰的</button>
+            <button size="mini" type="primary"  plain="{{addCream}}"bindtap="addCream">多加奶油</button>
+            <button size="mini" type="primary"  plain="{{reduceCream}}"bindtap="reduceCream">少加奶油</button>
+        </view>
+    </view>
+              
+</view>
+
+<view class="body">
+    <text class = "double">其它备注</text>
+    <view class="otherremarks">
+        <textarea value="" maxlength="50" placeholder="无接触配送，将商品挂家门口或放前台，地址封闭管理时请电话联系（可不填）" placeholder-class="placeholder"  bindinput="input"  />
+    </view>
+    <view class='button' >
+        <button size='default' type='primary' bindtap="confirm" >确定</button>
+    </view>
+</view>
+
